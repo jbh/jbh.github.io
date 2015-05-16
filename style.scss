@@ -18,7 +18,7 @@ html {
 }
 
 body {
-	background: $white;
+    background: $white;
   font: 18px/1.4 $helvetica;
   color: $darkGray;
 }
@@ -71,7 +71,7 @@ p {
 a {
   color: $blue;
   text-decoration: none;
-	cursor: pointer;
+    cursor: pointer;
   &:hover, &:active {
     color: $blue;
   }
@@ -116,8 +116,10 @@ img {
 }
 
 .date {
-  font-style: italic;
-  color: $gray;
+  font-size: 15px;
+  color: #818181;
+  margin-top: 5px;
+  margin-bottom: 30px;
 }
 
 // Specify the color of the selection
@@ -252,6 +254,11 @@ nav {
 }
 
 .post {
+  h1 {
+    margin-bottom: 0;
+     line-height: 1;
+  }
+
   blockquote {
     margin: 1.8em .8em;
     border-left: 2px solid $gray;
