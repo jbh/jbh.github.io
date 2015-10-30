@@ -1,0 +1,22 @@
+a {
+    &.button-collapse.top-nav {
+        width: 50px;
+        color: #fff;
+        font-size: 32px;
+        position: absolute;
+        top: 0;
+        right: 0;
+        text-align: center;
+    }
+}
+
+#NavMobile {
+    li {
+        a#LogoContainer {
+            color: white;
+            font-size: 48px;
+            line-height: 126px;
+            height: 126px;
+        }
+    }
+}

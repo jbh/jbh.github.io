@@ -1,0 +1,16 @@
+.posts {
+    article.post {
+        h4 {
+            a {
+                color: $teal;
+            }
+        }
+    }
+}
+
+.post {
+    blockquote.post-date {
+        margin: 0;
+        border-color: $teal;
+    }
+}
