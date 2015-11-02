@@ -1,59 +1,41 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>{% if page.title %}{{ page.title }} – {% endif %}{{ site.name }} – {{ site.description }}</title>
-
-        {% include meta.html %}
-
-        <!--[if lt IE 9]>
-        <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-        <![endif]-->
-
-        <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/css/materialize.min.css" />
-        <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/style.css" />
-        <link rel="alternate" type="application/rss+xml" title="{{ site.name }} - {{ site.description }}" href="{{ site.baseurl }}/feed.xml" />
-
-        <!-- Created with Jekyll Now - http://github.com/barryclark/jekyll-now -->
-    </head>
+    {% include head.html %}
 
   <body>
     <header id="LayoutHeader">
-        <div class="container">
-                <!-- <a class="page-title">Web Development</a> -->
-                <a href="#" id="NavMobileButton" data-activates="NavMobile" class="button-collapse waves-effect waves-light top-nav hide-on-large-only right"><i class="mdi-navigation-menu"></i></a>
-        </div>
-        <ul id="NavMobile" class="side-nav fixed">
-            <li class="logo teal"><a href="/" id="LogoContainer" class="brand-logo">SoBored</a></li>
-            {% for category in site.categories %}
-                <li>
-                    <a href="/categories/{{ category|first }}/">
-                        {{ category|first }}
-                        <span class="badge">
-                            {{ category|last|size }}
-                        </span>
-                    </a>
-                </li>
-            {% endfor %}
-        </ul>
+        {% include header.html %}
     </header>
 
     <main id="LayoutContent">
-        <div id="LayoutBanner" class="row teal">
-            <div class="col s12 m9">
-                <h1 class="header center-on-small-only">{% if page.title %}{{ page.title }}{% else %}Web Dev Blog{% endif %}</h1>
-            </div>
-        </div>
+        {% include layout-banner.html %}
         {{ content }}
     </main>
 
-    <footer id="LayoutFooter">
-
+    <footer id="LayoutFooter" class="page-footer cyan darken-4">
+        <div class="row">
+            <div class="col 16 s12">
+                <h5 class="white-text">SoBored Blog</h5>
+                <p class="grey-text text-lighten-4">Where Josh archives what he learns.</p>
+            </div>
+            <div class="col 14 offset-12 s12">
+                <h5 class="white-text">Connect</h5>
+                <ul class="social-links">
+                    <li><i class="teal-text text-lighten-3 fa fa-github"></i> <a class="white-text" href="http://github.com/jbh" target="_blank">jbh</a></li>
+                    <li><i class="teal-text text-lighten-3 fa fa-twitter"></i> <a class="white-text" href="http://twitter.com/tweetjbh" target="_blank">tweetjbh</a></li>
+                    <li><i class="teal-text text-lighten-3 fa fa-rss"></i> <a class="white-text" href="/feed.xml">rss</a></li>
+                    <li></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <div class="row">
+                <div class="col s12 m9 teal-text text-lighten-3">© {{ 'now' | date: '%Y' }}, All rights reserved.</div>
+            </div>
+        </div>
     </footer>
 
 
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="{{ site.baseurl }}/js/materialize.min.js"></script>
-	<script src="{{ site.baseurl }}/js/app.js"></script>
-    {% include analytics.html %}
+    {% include scripts.html %}
   </body>
 </html>

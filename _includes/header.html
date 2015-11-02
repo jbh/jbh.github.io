@@ -1,0 +1,17 @@
+<div class="container">
+        <!-- <a class="page-title">Web Development</a> -->
+        <a href="#" id="NavMobileButton" data-activates="NavMobile" class="button-collapse waves-effect waves-light top-nav hide-on-large-only right"><i class="mdi-navigation-menu"></i></a>
+</div>
+<ul id="NavMobile" class="side-nav fixed">
+    <li class="logo teal"><a href="/" id="LogoContainer" class="brand-logo">SoBored</a></li>
+    {% for category in site.categories %}
+        <li>
+            <a href="/categories/{{ category|first }}/">
+                {{ category|first }}
+                <span class="badge">
+                    {{ category|last|size }}
+                </span>
+            </a>
+        </li>
+    {% endfor %}
+</ul>

@@ -1,16 +1,33 @@
 .posts {
     article.post {
-        h4 {
-            a {
-                color: $teal;
-            }
+        padding: 10px 20px;
+        margin-bottom: 5px;
+
+        .post-title {
+            font-size: 24px;
+            margin-bottom: -8px;
         }
+    }
+    .row {
+        margin-bottom: 0;
     }
 }
 
 .post {
+    &.individual-post {
+        .note-protip {
+            border-color: green;
+        }
+    }
+
     blockquote.post-date {
         margin: 0;
         border-color: $teal;
+    }
+
+    a {
+        &:hover {
+            text-decoration: underline;
+        }
     }
 }

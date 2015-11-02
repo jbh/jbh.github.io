@@ -9,11 +9,13 @@ layout: default
 
             <blockquote class="post-date"><strong>{{ page.date | date: "%B %e, %Y" }}</strong></blockquote>
 
-            <div class="entry">
+            <div class="card-panel entry">
                 {{ content }}
             </div>
 
-            {% include disqus.html %}
+            <div class="card-panel">
+                {% include disqus.html %}
+            </div>
         </div>
     </div>
 </article>

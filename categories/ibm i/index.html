@@ -6,16 +6,12 @@ layout: default
     {% for post in site.categories['ibm i'] %}
         <div class="row">
             <div class="col s12 m9">
-                <article class="post">
-                    <h4><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h4>
-                    <hr>
-
-                    <div class="entry">
-                        {{ post.excerpt }}
-                    </div>
-
-                    <a href="{{ site.baseurl }}{{ post.url }}" class="read-more">Read More</a>
-                </article>
+                <a href="{{ site.baseurl }}{{ post.url }}">
+                    <article class="post card-panel blue-grey darken-1 white-text">
+                        <div class="post-title">{{ post.title }}</div>
+                        <div class="post-date teal-text text-lighten-3">{{ post.date|date: "%B %e, %Y" }}</div>
+                    </article>
+                </a>
             </div>
         </div>
     {% endfor %}
