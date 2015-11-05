@@ -1,0 +1,15 @@
+code {
+    background: #eef;
+    border: 1px solid #d5d5e9;
+    border-radius: 5px;
+    padding: 0 5px;
+}
+
+pre {
+    code {
+        background: none;
+        border: none;
+        padding: 0;
+        // padding: 5px 15px;
+    }
+}
