@@ -137,8 +137,7 @@ mkdir: cannot create directory ‘test’: File exists  #<== It failed this time
 You can even chain a bunch of commands together, and use a prompt to let you know what it is all done. I do this with cowsay.
 
 {% highlight bash %}
-user@host:~# mkdir Sites && cd Sites && mkdir .conf && git clone git@gitlab.sobo.red:mine/rnp.git && ln -s ~/Sites/rnp/conf/local.conf ~/Sites/.co
-nf/rnp.conf && cowsay "Done dudeski!" || cowsay "Oops :( Something went wrong boss."
+user@host:~# mkdir Sites && cd Sites && mkdir .conf && git clone git@gitlab.sobo.red:mine/rnp.git && ln -s ~/Sites/rnp/conf/local.conf ~/Sites/.conf/rnp.conf && cowsay "Done dudeski!" || cowsay "Oops :( Something went wrong boss."
 Cloning into 'rnp'...
 remote: Counting objects: 87, done.
 remote: Compressing objects: 100% (77/77), done.
