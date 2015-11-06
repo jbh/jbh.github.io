@@ -8,6 +8,9 @@ categories:
     - git
 ---
 
+* TOC
+{:toc}
+
 > **Disclamer**: I am not an IBM i System Administrator. I am a Linux geek that wanted a more familiar development environment on the IBM i. This article is an attempt to document my experiences with getting a familiar BASH environment going on the IBM i.
 > *I have only tested these techniques on versions [7.1](http://www-01.ibm.com/support/knowledgecenter/ssw_ibm_i_71/rzahg/icmain.htm "Documentation for IBM i v7r1"){:target="_blank"} and [7.2](http://www-01.ibm.com/support/knowledgecenter/ssw_ibm_i_72/rzahg/ic-homepage.htm "Documentation for IBM i v7r2"){:target="_blank"} of IBM i.*
 
@@ -81,7 +84,7 @@ fi
 
 #### dotfiles
 
-`dotfiles` are configuration files that are prepended with a dot, or ., so they are "hidden" from view. Some example dotfiles would be `.bashrc`, `.bash_profile`, `.bash_history`, `.vim`, `.weechat`, etc. [dotfiles on Github](https://dotfiles.github.io/){:target="_blank"} is a good place to get started. It has many repositories of dotfiles listed for examples and even ones that have automated installation. For example, [my dotfiles](https://github.com/jbh/dotfiles){:target="_blank"} can be downloaded and then installed by simply running `./script/bootstrap`. Keep in mind that most, if not all, dotfiles you run across will be for Linux or Mac, so make sure to consider compatibility on the IBM i before just copying and pasting someone else's dotfiles.
+`dotfiles` are configuration files that are prepended with a dot, or ., so they are "hidden" from view. Some example dotfiles would be `.bashrc`, `.bash_profile`, `.bash_history`, `.vim`, `.weechat`, etc. [dotfiles on Github](https://dotfiles.github.io/){:target="_blank"} is a good place to get started. It has many repositories of dotfiles listed for examples and even ones that have automated installation. For example, [my dotfiles](https://github.com/jbh/dotfiles){:target="_blank"} can be downloaded and then installed by simply running `./script/bootstrap`. Keep in mind that most, if not all, dotfiles you run across will be for Linux or Mac, so make sure to consider compatibility on the IBM i before just copying and pasting someone else's dotfiles. Also, keep in mind that when using Github, your configs are public unless otherwise put into a private repository. Remember to make example config files for files with sensitive data. These can be copied and edited accordingly when the repo is cloned locally.
 
 #### BASH ProTips
 
@@ -134,7 +137,7 @@ mkdir: cannot create directory ‘test’: File exists  #<== It failed this time
                 ||     ||
 {% endhighlight %}
 
-You can even chain a bunch of commands together, and use a prompt to let you know what it is all done. I do this with cowsay.
+You can even chain a bunch of commands together, and use a prompt to let you know what it is all done. I do this with [cowsay](https://github.com/schacon/cowsay){:target="_blank"}. This does not come with BASH. One could just use `echo "All done!"`, or whatever is preferred for an alert.
 
 {% highlight bash %}
 user@host:~# mkdir Sites && cd Sites && mkdir .conf && git clone git@gitlab.sobo.red:mine/rnp.git && ln -s ~/Sites/rnp/conf/local.conf ~/Sites/.conf/rnp.conf && cowsay "Done dudeski!" || cowsay "Oops :( Something went wrong boss."
@@ -154,6 +157,89 @@ Checking connectivity... done.
                 ||----w |
                 ||     ||
 {% endhighlight %}
+
+##### Aliases
+
+Aliases are very helpful tools on the command line. They allow you to create aliases for commands, chained commands, functions, etc. Think of it as command line shorthand. Below is my `.aliases` file as an example.
+
+{% highlight bash %}
+# .aliases
+# vim:syntax=sh
+
+# Reload bash aliases
+alias reload="source ~/.bash_profile"
+
+# enable color support of ls and also add handy aliases
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+    #alias dir='dir --color=auto'
+    #alias vdir='vdir --color=auto'
+
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+
+# some more ls aliases
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+
+# Directory Navigation
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+alias ......='cd ../../../../..'
+
+# Add an "alert" alias for long running commands.  Use like so:
+#   sleep 10; alert
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+{% endhighlight %}
+
+##### Functions
+
+I like to think of functions as verbose aliases. They can define much larger sets of commands and aliases. Below is my `.functions` file as an example.
+
+{% highlight bash %}
+# .functions
+# vim:syntax=sh
+
+#
+# Functions on home path
+#
+
+function h { cd ~/$1; } # Use: `h Documents` will translate to `cd ~/Documents`
+function d { cd ~/Development/$1; } # Use: `d ProjectDir` will translate to `cd ~/Development/ProjectDir`
+
+# Make directory and move to it
+mkcdr() { mkdir -p $1 && cd $1; }
+
+# Extract - My personal favorite
+extract() {
+    if [ -f $1 ] ; then
+        case $1 in
+            *.tar.bz2)   tar xjf $1 ;;
+            *.tar.gz)    tar xzf $1 ;;
+            *.bz2)       bunzip2 $1 ;;
+            *.rar)       rar x $1 ;;
+            *.gz)        gunzip $1 ;;
+            *.tar)       tar xf $1 ;;
+            *.tbz2)      tar xjf $1 ;;
+            *.tgz)       tar xzf $1 ;;
+            *.zip)       unzip $1 ;;
+            *.Z)         uncompress $1 ;;
+            *.7z)        7z x $1 ;;
+            *)           echo "'$1' cannot be extracted via extract()" ;;
+        esac
+    else
+        echo "'$1' is not a valid file"
+    fi
+}
+{% endhighlight %}
+
+##### Putting it all together
 
 ### Summarized step-by-step guides
 

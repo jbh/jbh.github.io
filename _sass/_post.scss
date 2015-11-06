@@ -19,6 +19,21 @@
         .note-protip {
             border-color: green;
         }
+
+        #markdown-toc {
+            background: #eef;
+            border: 1px solid #d5d5e9;
+            padding: 5px;
+
+            ul {
+                padding-left: 20px;
+            }
+
+            @media only screen and (min-width: 992px) {
+                float: right;
+                margin-left: 10px;
+            }
+        }
     }
 
     blockquote.post-date {
