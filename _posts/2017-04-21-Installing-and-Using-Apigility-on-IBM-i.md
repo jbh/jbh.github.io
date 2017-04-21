@@ -128,7 +128,7 @@ So if we call `http://api.ibmiserver.com/test` through a service like Postman, w
 
 Instead of relying Entity and Collection definitions, which would be the proper way, I have used a barebones approach
 to creating RESTful services when on the IBM i. This is largely due to the data I deal with daily, which is
-non-normalized and has column names that sometimes use special characters. Let's take a look a look at the
+non-normalized and has column names that sometimes use special characters. Let's take a look at the
 Resource and ResourceFactory for this service in case others need to take this same approach.
 
 {% highlight php %}
