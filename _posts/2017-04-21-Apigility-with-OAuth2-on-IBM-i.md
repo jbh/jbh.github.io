@@ -317,66 +317,9 @@ folder in the root of the project. Something like `phplib`. Define a namespace a
 }
 {% endhighlight %}
 
-Now that we have a destination folder created and autoloaded, it's time to create our factory.
+Run `composer dumpautoload` in the command line now to update the autoload files.
 
-{% highlight php %}
-<?php
-// phplib/Factory/OAuth2AdapterFactory.php
-namespace CompanyNamespace\Factory;
-
-use Zend\ServiceManager\ServiceLocatorInterface;
-use CompanyNamespace\Adapter\OAuth2Adapter;
-use Zend\Db\Adapter\Driver\Pdo\Pdo as PdoDriver;
-
-class OAuth2AdapterFactory
-{
-    /**
-     * Create service
-     *
-     * @param ServiceLocatorInterface $serviceLocator
-     * @return OAuth2Adapter
-     */
-    public function __invoke(ServiceLocatorInterface $serviceLocator)
-    {
-        $driver = new PdoDriver(
-            new \PDO(
-                'ibm:SXXXXXXX',
-                'user',
-                'password',
-                [
-                    \PDO::I5_ATTR_DBC_SYS_NAMING => true,
-                    \PDO::ATTR_CASE => \PDO::CASE_LOWER
-                ]
-            )
-        );
-
-        if (!$driver instanceof PdoDriver) {
-            throw new \RuntimeException("Need a PDO connection!");
-        }
-
-        $connection = $driver->getConnection();
-
-        $pdo = $connection->getResource();
-        $settings = [
-            'client_table' => 'filesrdb.oauth_clients',
-            'access_token_table' => 'filesrdb.oauth_access_tokens',
-            'refresh_token_table' => 'filesrdb.oauth_refresh_tokens',
-            'code_table' => 'filesrdb.oauth_codes',
-            'user_table' => 'filesrdb.oauth_users',
-            'jwt_table' => 'filesrdb.oauth_jwt',
-            'scope_table' => 'filesrdb.oauth_scopes',
-        ];
-
-        return new OAuth2Adapter($pdo, $settings);
-    }
-}
-
-{% endhighlight %}
-
-This factory is used for dependency injection into the custom OAuth2Adapter we're going to build. This will
-allow us to override the authentication functionality.
-
-We have a factory, so all we need is an Adapter for it.
+Now that we have a destination folder created and autoloaded, it's time to create our adapter.
 
 {% highlight php %}
 <?php
@@ -424,8 +367,8 @@ class OAuth2Adapter extends PdoAdapter
      * getUser
      *
      * Simply gets the user's information. At this point, the user is being retrieved in order to test the password
-     * with checkPassword. If the user isn't found in the OAUTH_USERS table, it will fallback to the signon table for
-     * system user information.
+     * with checkPassword. If the user isn't found in the OAUTH_USERS table, it will fallback to the
+     * custom_system_user_table table for system user information.
      *
      * @param $username
      * @return array|bool
@@ -437,7 +380,7 @@ class OAuth2Adapter extends PdoAdapter
         $stmt->execute(array('username' => $username));
 
         // Try to retrieve the user info. If no info retrieved, fallback to the custom_system_user_table table
-        // sa.TODO - figure out how to work with ecuser and signon having same user
+        // sa.TODO - figure out how to work with ecuser and custom_system_user_table having same user
         if (!$userInfo = $stmt->fetch(\PDO::FETCH_ASSOC)) {
             // Prepare and execute SQL for getting the user from the SIGNON table
             $stmt = $this->db->prepare($sql = 'SELECT * from library.custom_system_user_table where nuser=:username');
@@ -460,3 +403,122 @@ class OAuth2Adapter extends PdoAdapter
 This particular example is overriding the OAuth2 Adapter in order to also check for system users vs normal users when
 someone is authenticating with the API. One can of course do whatever they like in the two validation methods within
 the adapter.
+
+We have an adapter, so we need a factory in order to inject dependencies and initiate the adapter.
+
+{% highlight php %}
+<?php
+// phplib/Factory/OAuth2AdapterFactory.php
+namespace CompanyNamespace\Factory;
+
+use Zend\ServiceManager\ServiceLocatorInterface;
+use CompanyNamespace\Adapter\OAuth2Adapter;
+use Zend\Db\Adapter\Driver\Pdo\Pdo as PdoDriver;
+
+class OAuth2AdapterFactory
+{
+    /**
+     * Create service
+     *
+     * @param ServiceLocatorInterface $serviceLocator
+     * @return OAuth2Adapter
+     */
+    public function __invoke(ServiceLocatorInterface $serviceLocator)
+    {
+        $driver = new PdoDriver(
+            new \PDO(
+                'ibm:SXXXXXXX',
+                'user',
+                'password',
+                [
+                    \PDO::I5_ATTR_DBC_SYS_NAMING => true,
+                    \PDO::ATTR_CASE => \PDO::CASE_LOWER
+                ]
+            )
+        );
+
+        if (!$driver instanceof PdoDriver) {
+            throw new \RuntimeException("Need a PDO connection!");
+        }
+
+        $connection = $driver->getConnection();
+
+        $pdo = $connection->getResource();
+        $settings = [
+            'client_table' => 'library.oauth_clients',
+            'access_token_table' => 'library.oauth_access_tokens',
+            'refresh_token_table' => 'library.oauth_refresh_tokens',
+            'code_table' => 'library.oauth_codes',
+            'user_table' => 'library.oauth_users',
+            'jwt_table' => 'library.oauth_jwt',
+            'scope_table' => 'library.oauth_scopes',
+        ];
+
+        return new OAuth2Adapter($pdo, $settings);
+    }
+}
+
+{% endhighlight %}
+
+This factory is used for dependency injection into the custom OAuth2Adapter.
+
+Great. We have a factory and an adapter to override the default. So how do we override?
+
+We need to update both `global.php` and `local.php` in order to override. Add the `service_manager` portion
+to `global.php` and replace the `storage` for oauth in `local.php`.
+
+{% highlight php %}
+<?php
+// global.php
+// Replace library with the appropriate library
+return [
+    'service_manager' => [
+        'factories' => [
+            'SA\\Adapter\\OAuth2Adapter' => SA\Factory\OAuth2AdapterFactory::class,
+        ],
+    ],
+    'zf-oauth2' => [
+        // Override the default tables in order to prefix with library.
+        'storage_settings' => [
+            'client_table' => 'library.oauth_clients',
+            'access_token_table' => 'library.oauth_access_tokens',
+            'refresh_token_table' => 'library.oauth_refresh_tokens',
+            'code_table' => 'library.oauth_codes',
+            'user_table' => 'library.oauth_users',
+            'jwt_table' => 'library.oauth_jwt',
+            'scope_table' => 'library.oauth_scopes',
+        ]
+    ],
+    'router' => [
+        'routes' => [
+            'oauth' => [
+                'options' => [
+                    'spec' => '%oauth%',
+                    'regex' => '(?P<oauth>(/oauth))',
+                ],
+                'type' => 'regex',
+            ],
+        ],
+    ],
+];
+{% endhighlight %}
+
+{% highlight php %}
+<?php
+// local.php
+return [
+    'zf-mvc-auth' => [
+        'authentication' => [
+            'adapters' => [
+                'oauth-name' => [
+                    'adapter' => \ZF\MvcAuth\Authentication\OAuth2Adapter::class,
+                    'storage' =>
+                        'storage' => 'CompanyNamespace\\Adapter\\OAuth2Adapter',,
+                ],
+            ],
+        ],
+    ],
+];
+{% endhighlight %}
+
+That's it! The API should be using our new adapter for authentication.
