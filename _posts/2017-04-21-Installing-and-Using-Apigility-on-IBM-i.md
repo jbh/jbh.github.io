@@ -4,8 +4,8 @@ title: Installing and Using Apigility on IBM i
 excerpt: Using Apigility on the IBM i to access DB2 data.
 categories:
     - ibm i
-    - Apigility
-    - DB2
+    - apigility
+    - db2
 ---
 
 * TOC
