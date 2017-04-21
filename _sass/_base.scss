@@ -1,3 +1,7 @@
+img {
+    max-width: 100%;
+}
+
 header, footer, main {
     @media only screen and (min-width: 992px) {
         padding-left: 240px;
