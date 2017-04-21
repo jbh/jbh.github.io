@@ -16,17 +16,18 @@ categories:
 These tables are created according to specifications from [Zend Framework OAuth2](https://github.com/zfcampus/zf-oauth2).
 
 {% highlight sql %}
--- Replace LIBRARY with the preferred library name.
--- Build OAuth tables for Apigility.
---   OAUTH_CLIENTS
---   OATUH_USERS
---   OAUTH_ACCESS_TOKENS
---   OAUTH_REFRESH_TOKENS
---   OAUTH_CODES
---   OAUTH_SCOPES
---   OAUTH_JWT
--- More details at https://github.com/zfcampus/zf-oauth2
-
+/**
+ * Replace LIBRARY with the preferred library name.
+ * Build OAuth tables for Apigility.
+ *   OAUTH_CLIENTS
+ *   OATUH_USERS
+ *   OAUTH_ACCESS_TOKENS
+ *   OAUTH_REFRESH_TOKENS
+ *   OAUTH_CODES
+ *   OAUTH_SCOPES
+ *   OAUTH_JWT
+ * More details at https://github.com/zfcampus/zf-oauth2
+ */
 
 -- BEGIN OAUTH_CLIENTS DEFINITION
 CREATE OR REPLACE TABLE LIBRARY/OAUTH_CLIENTS (
