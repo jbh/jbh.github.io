@@ -308,7 +308,7 @@ First, we need to create a destination folder for custom classes. This can be pl
 folder in the root of the project. Something like `phplib`. Define a namespace and autoload classes from here in your
 `composer.json`:
 
-{% highligh json %}
+{% highlight json %}
 "autoload": {
     "psr-4": {
         "CompanyNamespace\\": "phplib/"
