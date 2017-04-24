@@ -56,12 +56,12 @@ to fall back on. It usually just says something like: IT WORKS!!! just to prove 
     development/
       developer-one/
         app-one/                     <=== Git repo on any development branch
-          conf/                      <=== Versioned apache configuration files that project specific
+          conf/                      <=== Project-specific, versioned apache configuration files that
             developer-one.conf
             developer-two.conf
             stage.conf
             production.conf
-          public/                    <=== Public web files - some call it htdocs
+          public/                    <=== Public web files - some name it htdocs
         app-two/                     <=== Git repo on any development branch
         app-three/                   <=== Git repo on any development branch
       developer-two/
