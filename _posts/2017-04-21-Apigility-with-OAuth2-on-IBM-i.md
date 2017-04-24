@@ -13,7 +13,7 @@ categories:
 
 ### Create the OAuth tables in DB2
 
-These tables are created according to specifications from [Zend Framework OAuth2](https://github.com/zfcampus/zf-oauth2).
+These tables are created according to specifications from [Zend Framework OAuth2](https://github.com/zfcampus/zf-oauth2){:target="_blank"}.
 
 {% highlight sql %}
 /**
@@ -262,7 +262,7 @@ return [
 ### Test
 
 That's it! It's that simple to get basic OAuth2 up and running with Apigility on the IBM i. Now one can visit
-the [Apgility OAuth2 Documentation](https://apigility.org/documentation/auth/authentication-oauth2) to see how to
+the [Apgility OAuth2 Documentation](https://apigility.org/documentation/auth/authentication-oauth2){:target="_blank"} to see how to
 connect web server applications up.
 
 One easy way to just quickly test if OAuth2 is working properly is to put a record in OAUTH_CLIENTS, and go
