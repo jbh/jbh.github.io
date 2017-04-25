@@ -17,7 +17,7 @@ categories:
 I suggest starting everything with some color variables, since they usually end up repeated a lot when creating a decent
 looking bash environment.
 
-{% highlight bash %}
+```bash
 RESET="\033[0m"
 BOLD="\033[1m"
 BLACK="\033[30m"
@@ -36,14 +36,14 @@ BG_BLUE="\033[44m"
 BG_MAGENTA="\033[45m"
 BG_CYAN="\033[46m"
 BG_WHITE="\033[47m"
-{% endhighlight %}
+```
 
 That's usually followed with prettification of PS1 and the most basic aliases.
 
 > In order for this particular PS1 configuration to work
 [git-prompt.sh](https://github.com/git/git/blob/master/contrib/completion/git-prompt.sh){:target="_blank"} must be used.
 
-{% highlight bash %}
+```bash
 # Prettify the bash prompt. This will give us something like
 # <folder> (<git-branch>) →
 source "${HOME}/git-prompt.sh"
@@ -56,11 +56,11 @@ alias reload="source ${HOME}/.bashrc"
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
-{% endhighlight %}
+```
 
 Then comes all the fun stuff.
 
-{% highlight bash %}
+```bash
 # This is helpful for writing bash scripts.
 # Use: if ask "Continue?" Y;
 function ask() {
@@ -131,7 +131,7 @@ function extract() {
         echo "'$1' is not a valid file"
     fi
 }
-{% endhighlight %}
+```
 
 Those are just a few examples of handy tools a developer can create when tailoring their bash environment.
 
@@ -139,7 +139,7 @@ Those are just a few examples of handy tools a developer can create when tailori
 
 Thanks [@PHPDave](https://twitter.com/php_dave) for the inspiration.
 
-{% highlight bash %}
+```bash
 # IBM i DB2 alias.
 # Use: db2 "select * from library.file"
 function db2() {
@@ -185,7 +185,7 @@ function zend-server() {
             echo $"Usage: zend-server {start|begin|stop|end|jobs}"
     esac
 }
-{% endhighlight %}
+```
 
 Those are a few of my favorite ones. Explore other ways to make your own environment more efficient. It's what makes
 BASH fun and worthwhile.
@@ -194,7 +194,7 @@ BASH fun and worthwhile.
 
 > There are a few placeholders in this example configuration. It should be combed through and tailored before use.
 
-{% highlight bash %}
+```bash
 # Example ~/.bashrc
 
 # colors
@@ -353,7 +353,7 @@ function http-permissions() {
     system -i "CHGAUT OBJ('${1}') USER(QTMHHTTP) DTAAUT(*RWX) OBJAUT(*ALL) SUBTREE(*ALL)"
 }
 
-{% endhighlight %}
+```
 
 ### Taking it all apart
 
@@ -377,16 +377,16 @@ My file structure ends up looking something like:
 
 To see how they connect, here are `.bashrc`, `.bash_start`, and `.bash_functions`:
 
-{% highlight bash %}
+```bash
 # .bashrc
 
 source "${HOME}/.bash_start"
 source "${HOME}/.bash_aliases"
 source "${HOME}/.bash_functions"
 source "${HOME}/.bash_end"
-{% endhighlight %}
+```
 
-{% highlight bash %}
+```bash
 # .bash_start
 
 # colors
@@ -413,9 +413,9 @@ BG_WHITE="\033[47m"
 # <folder> (<git-branch>) →
 source "${HOME}/git-prompt.sh"
 export PS1="${CYAN}\W${RESET} $(__git_ps1 "(${GREEN}%s${RESET}) ")${RED}→${RESET} "
-{% endhighlight %}
+```
 
-{% highlight bash %}
+```bash
 # .bash_functions
 
 # Order matters. It is assumed that `ask` might be used by other functions.
@@ -427,4 +427,4 @@ function qccsid() {
 }
 
 source "${HOME}/.bash-functions/zend_server.sh"
-{% endhighlight %}
+```
