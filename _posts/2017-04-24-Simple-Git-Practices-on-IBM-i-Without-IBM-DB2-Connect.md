@@ -39,12 +39,13 @@ and remote repositories is assumed to keep this light.
 
 The file structure is important here. It will help us stay organized and give each developer their own environment.
 
-> **Protip**: Keep apache configurations within each specific project. In this example they're under project-root/config.
-This allows for apache configurations to be version controlled. It also helps with organization and will make
-enabling/disabling web applications a breeze. Simply add `IncludeOptional /www/.conf-enabled/*.conf` to the end of
-the root Apache configuration file. This is usually found through either the Apache administration web interface. The
-file is located at `/www/zendsvr6/conf/httpd.conf`. I usually leave the `/www/zendsvr6` up as a placeholder website
-to fall back on. It usually just says something like: IT WORKS!!! just to prove apache is at least working.
+> **Protip**: Keep apache configurations within each specific project. In this example they're under `project-root/conf`.
+This allows for apache configurations for each environment to be version controlled. It also helps with organization
+and will make enabling/disabling web applications a breeze. Simply add `IncludeOptional /www/.conf-enabled/*.conf` to
+the end of the root Apache configuration file. This is usually found through either the Apache administration web
+interface or through the IFS. The file is usually located at `/www/zendsvr6/conf/httpd.conf`. I leave the
+`/www/zendsvr6` up as a placeholder website to fall back on. It usually just displays something like, "IT WORKS!!!"
+just to prove apache is at least working.
 
 ```
 /
@@ -118,7 +119,7 @@ How does this help us remove the need for DB2 Connect? Well, now we are able to 
 on the IBM i while still retaining development environments as if we were developing locally. This gives us
 complete access to the DB2 data without the need to access it remotely.
 
-While all applications can be developed this way, I still suggest decoupling the backend. Not only is this best
+While all applications can be developed with remote syncing, I still suggest decoupling the backend. Not only is this best
 practice, but it will allow the data to be accessed the same way by many different applications. This helps
 with consistency, standards, and encapsulation. This will also allow the majority of applications to be developed
 locally. Ideally there would be one application that need be edited remotely, and that would be the API application.
