@@ -46,4 +46,15 @@
             text-decoration: underline;
         }
     }
+
+    .share-page {
+        a {
+            color: #009688;
+        }
+
+        a:hover {
+            text-decoration: none;
+            color: black;
+        }
+    }
 }
