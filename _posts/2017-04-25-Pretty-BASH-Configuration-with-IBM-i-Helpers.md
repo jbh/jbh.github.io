@@ -150,7 +150,7 @@ function db2() {
 # Recursively gives permission for QTMHHTTP to directory passed
 # Use: http-permissions /www/production/project-name/htdocs
 function http-permissions() {
-	system -i "CHGAUT OBJ('${1}') USER(QTMHHTTP) DTAAUT(*RWX) OBJAUT(*ALL) SUBTREE(*ALL)";
+    system -i "CHGAUT OBJ('${1}') USER(QTMHHTTP) DTAAUT(*RWX) OBJAUT(*ALL) SUBTREE(*ALL)";
 }
 
 # Call WRKACTJOB on IBM i
@@ -311,7 +311,7 @@ function db2() {
 # Recursively gives permission for QTMHHTTP to directory passed
 # Use: http-permissions /www/production/project-name/htdocs
 function http-permissions() {
-	system -i "CHGAUT OBJ('${1}') USER(QTMHHTTP) DTAAUT(*RWX) OBJAUT(*ALL) SUBTREE(*ALL)";
+    system -i "CHGAUT OBJ('${1}') USER(QTMHHTTP) DTAAUT(*RWX) OBJAUT(*ALL) SUBTREE(*ALL)";
 }
 
 # Call WRKACTJOB on IBM i
@@ -350,7 +350,7 @@ function zend-server() {
 # Recursively gives permission for QTMHHTTP to directory passed
 # Use: http-permissions /www/production/project-name/htdocs
 function http-permissions() {
-	system -i "CHGAUT OBJ('${1}') USER(QTMHHTTP) DTAAUT(*RWX) OBJAUT(*ALL) SUBTREE(*ALL)"
+    system -i "CHGAUT OBJ('${1}') USER(QTMHHTTP) DTAAUT(*RWX) OBJAUT(*ALL) SUBTREE(*ALL)"
 }
 
 {% endhighlight %}
