@@ -13,7 +13,7 @@ categories:
 {:toc}
 
 > Most commands will need to be ran with super user permissions. Just prepend with `sudo` if any permissions errors
-occur. `sudo yum install <package>`
+occur.
 
 ### Download CentOS 7
 
