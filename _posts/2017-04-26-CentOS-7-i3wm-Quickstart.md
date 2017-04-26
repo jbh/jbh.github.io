@@ -2,7 +2,7 @@
 layout: post
 title: CentOs 7 + i3wm Quickstart Guide
 excerpt: |
-    A simple, few-step guide to getting started with i3wm on CentOS 7 starting from installing CentOS 7.
+    A simple, few-step guide to getting started with i3wm on CentOS 7 starting with installing CentOS 7.
 categories:
     - linux
     - centos
