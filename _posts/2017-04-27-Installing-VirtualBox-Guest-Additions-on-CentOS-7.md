@@ -33,7 +33,7 @@ $ yum install dkms gcc make kernel-devel bzip2 binutils patch libgomp glibc-head
 ```
 
 At this point, if we try to mount and install VirtualBox Guest Additions, we'll run into an issue where the install
-script cannot find or recognize the kernel. Here's a workaround I found for this issue:
+script cannot find or recognize the kernel. Below is a workaround I found for this issue:
 
 #### Finding and Fixing Kernel Issue
 
