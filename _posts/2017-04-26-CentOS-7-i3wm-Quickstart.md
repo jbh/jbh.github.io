@@ -1,6 +1,6 @@
 ---
 layout: post
-title: CentOs 7 + i3wm Quickstart Guide
+title: CentOS 7 + i3wm Quickstart Guide
 excerpt: |
     A simple, few-step guide to getting started with i3wm on CentOS 7 starting with installing CentOS 7.
 categories:
@@ -48,7 +48,7 @@ finish. Once rebooted and logged in as the new user, we can begin setting things
 
 ### Setup network
 
-This is necessary to communicated with the outside world, which we need to do in order to install software packages.
+This is necessary to communicate with the outside world, which we need to do in order to install software packages.
 Follow instructions at [krizna](http://www.krizna.com/centos/setup-network-centos-7/){:target="_blank"}. The first
 three steps under `GUI Mode` are all that are necessary.
 
