@@ -12,7 +12,7 @@ categories:
 * TOC
 {:toc}
 
-### Create a Simple Data Source
+### Create a Simple Schema and Table
 
 To get us started, we'll need a source of data for our service. I'm going to use IBM i DB2 for this example,
 since that is primarily what I work on. Below is SQL to define a simple table and populate it with some data.
@@ -105,7 +105,7 @@ schema. It is time to create a new rest service through the Apigility admin inte
 I like to go ahead and define my fields at this point. It just seems like a natural first step to take after
 creating the service.
 
-Defining fields is simple. Each field represents a column in your database, and it should have the same constraints.
+Defining a field is simple. Each field represents a column in your database, and it should have the same constraints.
 Constraints can be defined through the validator and filter options. For this example, we're going to simply require
 that username and email be required.
 
@@ -119,7 +119,7 @@ method has not been defined for collections". This is a good sign. It just means
 
 Entities are simply an object representation of our data. It should not do anything with the data. It should not have
 any logic within it. It simply represents our data as an object. With that in mind, our Entity will need a property
-for each field. It will also need one method for converting the object to an array, and one function for populating the
+for each field. It will also need one method for converting the object to an array, and one method for populating the
 entity.
 
 ```php
@@ -321,17 +321,43 @@ via the service manager. This is necessary for the dependency injection in the r
 this `getServiceConfig()` method to `module/Test/Module.php`.
 
 ```php
-public function getServiceConfig()
+<?php
+// module/Test/Module.php
+namespace Test;
+
+use ZF\Apigility\Provider\ApigilityProviderInterface;
+
+class Module implements ApigilityProviderInterface
 {
-    return array(
-        'factories' => array(
-            'Test\V1\Rest\EcommerceUser\EcommerceUserMapper' =>  function ($sm) {
-                $adapter = $sm->get('ibmdb');
-                return new \Test\V1\Rest\EcommerceUser\EcommerceUserMapper($adapter);
-            },
-        ),
-    );
+    public function getConfig()
+    {
+        return include __DIR__ . '/config/module.config.php';
+    }
+
+    public function getAutoloaderConfig()
+    {
+        return [
+            'ZF\Apigility\Autoloader' => [
+                'namespaces' => [
+                    __NAMESPACE__ => __DIR__ . '/src',
+                ],
+            ],
+        ];
+    }
+
+    public function getServiceConfig()
+    {
+        return array(
+            'factories' => array(
+                'Test\V1\Rest\EcommerceUser\EcommerceUserMapper' =>  function ($sm) {
+                    $adapter = $sm->get('ibmdb');
+                    return new \Test\V1\Rest\EcommerceUser\EcommerceUserMapper($adapter);
+                },
+            ),
+        );
+    }
 }
+
 ```
 
 > Keep in mind that the name (associative key) for this mapper could be anything. I keep the class name to simply
@@ -339,18 +365,11 @@ guarantee this service name will be unique, but one could name it anything for s
 to pass it to the resource in the factory. For example, it could be:
 
 ```php
-public function getServiceConfig()
-{
-    return array(
-        'factories' => array(
-            // Service name defined through associative array key
-            'foo' =>  function ($sm) {
-                $adapter = $sm->get('ibmdb');
-                return new \Test\V1\Rest\EcommerceUser\EcommerceUserMapper($adapter);
-            },
-        ),
-    );
-}
+// Service name defined through associative array key
+'foo' =>  function ($sm) {
+    $adapter = $sm->get('ibmdb');
+    return new \Test\V1\Rest\EcommerceUser\EcommerceUserMapper($adapter);
+},
 ```
 
 ### Pass the Mapper to the Resource
@@ -376,11 +395,12 @@ class EcommerceUserResourceFactory
 
 ### Setup the Resource
 
-Since we are injecting a service to the resource, we will need to define that resource as a property and initiate it in
+Since we are injecting a service to the resource, we will need to define that service as a property and initiate it in
 the constructor. We'll then use the Mapper throughout. Our Resource ends up looking like:
 
 ```php
 <?php
+// module/Test/src/V1/Rest/EcommerceUser/EcommerceUserResource.php
 namespace Test\V1\Rest\EcommerceUser;
 
 use ZF\ApiProblem\ApiProblem;
