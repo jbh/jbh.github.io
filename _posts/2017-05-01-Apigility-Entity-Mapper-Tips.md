@@ -3,6 +3,7 @@ layout: post
 title: Apigility Entity & Mapper Tips
 excerpt: |
     A guide for getting started with Apigilty, Entities, Mappers, and everything else needed for a RESTful API.
+image: /images/apigility-entity-mapper-tips/ecommerce-user-fields.png
 categories:
     - apigility
     - ibm i
@@ -75,7 +76,7 @@ VALUES ('natalya', 'natalya@example.com', 'Natalya', 'Undergrowth') ;
 
 If all ran well, you should end up with a populated table like so:
 
-![Ecommerce Users Table](/images/apigility-entitiy-mapper-tips/ecommerce-users-table.png)
+![Ecommerce Users Table](/images/apigility-entity-mapper-tips/ecommerce-users-table.png)
 
 ### Install Apigility
 
@@ -100,7 +101,7 @@ to be lowercase as well.
 We have Apigility installed on our system as well as an example table called `ECOMMERCE_USERS` in our `APIGILITY`
 schema. It is time to create a new rest service through the Apigility admin interface. Let's call it `EcommerceUser`.
 
-![New Ecommerce Api Service](/images/apigility-entitiy-mapper-tips/new-ecommerce-api-service.png)
+![New Ecommerce Api Service](/images/apigility-entity-mapper-tips/new-ecommerce-api-service.png)
 
 I like to go ahead and define my fields at this point. It just seems like a natural first step to take after
 creating the service.
@@ -109,7 +110,7 @@ Defining a field is simple. Each field represents a column in your database, and
 Constraints can be defined through the validator and filter options. For this example, we're going to simply require
 that username and email be required.
 
-![Ecommerce User Fields](/images/apigility-entitiy-mapper-tips/ecommerce-user-fields.png)
+![Ecommerce User Fields](/images/apigility-entity-mapper-tips/ecommerce-user-fields.png)
 
 Everything should be "working" fine up until this point. You should be able to call
 `GET api.ibmiserver.com/ecommerce-user` through Postman, for example, and you'll at least get something like, "The GET
