@@ -15,12 +15,13 @@ categories:
 
 ### Download & Attach VirtualBox Guest Additions
 
-1. [Download](http://download.virtualbox.org/virtualbox/) the appropriate version of VirtualBox Guest Additions. The
+1. [Download](http://download.virtualbox.org/virtualbox/){:target="_blank"} the appropriate version of VirtualBox Guest Additions. The
 latest would be
-[VBoxGuestAdditions_5.1.20](http://download.virtualbox.org/virtualbox/5.1.20/) at the time
+[VBoxGuestAdditions_5.1.20](http://download.virtualbox.org/virtualbox/5.1.20/){:target="_blank"} at the time
 this article was written.
 2. Go ahead and attach the VirtualBox Guest Additions ISO as a device to the virtual machines storage. This is basically
 emulating a CD being inserted into our virtual machine.
+
 ![VirtualBox Settings Screenshot](/images/virtualbox-guest-additions/virtualbox-storage-settings.png)
 
 ### Prepare CentOS
