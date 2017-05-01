@@ -8,9 +8,6 @@ categories:
     - apigility
     - ibm i
     - db2
-author:
-    name: Josh Hall
-    twitter: tweetjbh
 ---
 
 * TOC
