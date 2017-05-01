@@ -15,6 +15,11 @@ avatar: http://www.gravatar.com/avatar/be3799c30687afce132fe5ed871e7650.png
 
 author: Josh Hall
 
+publisher: Josh Hall
+
+twitter:
+  username: tweetjbh
+
 #
 # Flags below are optional
 #
@@ -72,6 +77,7 @@ sass:
 gems:
   - jekyll-sitemap # Create a sitemap using the official Jekyll sitemap gem
   - jekyll-seo-tag
+  - jekyll-last-modified-at
 
 # Exclude these files from your production _site
 exclude:
