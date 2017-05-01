@@ -539,4 +539,4 @@ much more fun to handle than raw data.
 ### Github Source
 
 The entire Apigility example for this tutorial can be found
-[here](http://github.com/jbh/ibmi-apigility-example){:target="blank"}.
+[here](https://github.com/jbh/apigility-ibm-i){:target="blank"}.
