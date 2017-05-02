@@ -1,5 +1,7 @@
+{% if page.title %}
 <div id="LayoutBanner" class="row teal">
     <div class="col s12 m9">
-        <h3 class="header center-on-small-only">{% if page.title %}{{ page.title }}{% endif %}</h3>
+        <h3 class="header center-on-small-only">{{ page.title }}</h3>
     </div>
 </div>
+{% endif %}
