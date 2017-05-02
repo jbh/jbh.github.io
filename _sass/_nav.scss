@@ -13,10 +13,16 @@ a {
 #NavMobile {
     li {
         a#LogoContainer {
+            font-family: 'Space Mono', monospace;
+            font-size: 36px;
             color: white;
-            font-size: 42px;
             line-height: 87px;
             height: 87px;
+            padding: 0;
+
+            img {
+                vertical-align: middle;
+            }
         }
     }
 }
