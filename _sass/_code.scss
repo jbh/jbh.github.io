@@ -3,6 +3,11 @@ code {
     border: 1px solid #d5d5e9;
     border-radius: 5px;
     padding: 0 5px;
+    font-family: monospace;
+
+    span {
+        font-family: monospace;
+    }
 }
 
 pre {
