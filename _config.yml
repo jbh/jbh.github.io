@@ -18,6 +18,12 @@ author: tweetjbh
 twitter:
   username: tweetjbh
 
+defaults:
+  - scope:
+      path: ""
+    values:
+      image: /images/share-logo.png
+
 #
 # Flags below are optional
 #
