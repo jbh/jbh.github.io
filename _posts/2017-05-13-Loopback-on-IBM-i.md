@@ -4,7 +4,7 @@ title: LoopBack on IBM i
 excerpt: |
     A guide for installing LoopBack on IBM i and utilizing
     loopback-connector-db2ibmi to access DB2 data.
-image: /images/loopback/loopback-install.gif
+image: /images/loopback/loopback-model.jpg
 categories:
     - loopback
     - ibm i
