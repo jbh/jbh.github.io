@@ -19,10 +19,10 @@ categories:
 ### Installing LoopBack
 
 This uses
-[loopback-cli](https://loopback.io/doc/en/lb3/Installation.html#install-loopback-cli-tool)
+[loopback-cli](https://loopback.io/doc/en/lb3/Installation.html#install-loopback-cli-tool){:target="_blank"}
 in order to create a LoopBack Project. That is the `lb` command seen below. A
 list of `loopback-cli` commands can be found
-[here](https://loopback.io/doc/en/lb3/Command-line-tools.html).
+[here](https://loopback.io/doc/en/lb3/Command-line-tools.html){:target="_blank"}.
 
 ![LoopBack Install](/images/loopback/loopback-install.gif)
 
@@ -56,7 +56,7 @@ and they'll have CRUD + Querying out of the box.
 
 Below is me defining a model via `lb model` and filling out the configuration to
 match `ECOMMERCE_USERS`, which I made in my
-[Installing and Using Apigility on IBM i](/2017-04-21-Installing-and-Using-Apigility-on-IBM-i)
+[Apigility Entity Mapper Tips](/Apigility-Entity-Mapper-Tips/)
 article. Tables, columns, etc. are all case sensitive. This is why you see me
 yelling all my properties and such.
 
@@ -77,3 +77,9 @@ Below is me exploring the API at `http://spaces.litmis.com:63433/explorer`. I
 didn't do anything other than what I did above for these requests to work.
 
 ![Modify LoopBack Model](/images/loopback/explore-api.gif)
+
+### loopback-connector-db2ibmi Github
+
+Contributions are more than welcome over at the
+[loopback-connector-db2ibmi Github](https://github.com/jbh/loopback-connector-db2ibmi){:target="_blank"}
+as it is very much in the beginning stages.
