@@ -34,6 +34,7 @@ and initialize it in the controller's constructor like so:
 
 ```php
 <?php
+// module/ApiNamespace/src/V1/Rest/ApiNamespace/StoredProcedureNameController.php
 namespace ApiNamespace\V1\Rpc\StoredProcedureName;
 
 use Zend\Mvc\Controller\AbstractActionController;
@@ -60,6 +61,7 @@ We can do that with the service manager:
 
 ```php
 <?php
+// module/ApiNamespace/src/V1/Rest/ApiNamespace/StoredProcedureNameControllerFactory.php
 namespace ApiNamespace\V1\Rpc\StoredProcedureName;
 
 class StoredProcedureNameControllerFactory
@@ -83,6 +85,7 @@ procedure. This allows us to use `IN`, `OUT`, and `INOUT` DB2 parameters.
 
 ```php
 <?php
+// module/ApiNamespace/src/V1/Rest/ApiNamespace/StoredProcedureNameController.php
 namespace ApiNamespace\V1\Rpc\StoredProcedureName;
 
 use Zend\Mvc\Controller\AbstractActionController;
