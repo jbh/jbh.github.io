@@ -15,8 +15,8 @@ categories:
 ### Apigility Setup
 
 This example assumes a setup similar to the one described in
-[Installing and Using Apigility on IBM i](/Installing-and-Using-Apigility-on-IBM-i/). The example repository can be
-found on [github](https://github.com/jbh/apigility-ibm-i).
+[Installing and Using Apigility on IBM i](/Installing-and-Using-Apigility-on-IBM-i/){:target="_blank"}. The example repository can be
+found on [github](https://github.com/jbh/apigility-ibm-i){:target="_blank"}.
 
 ### Create New RPC
 
