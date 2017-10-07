@@ -1,9 +1,12 @@
 #
 # This file contains configuration flags to customize your site
 #
+github: [metadata]
+repository: jbh/jbh.github.io
 
 # Name of your site (displayed in the header)
 name: SoBored Blog
+
 
 twitter_username: tweetjbh
 
@@ -78,7 +81,7 @@ sass:
   style: :expanded # You might prefer to minify using :compressed
 
 # Use the following plug-ins
-gems:
+plugins:
   - jekyll-sitemap # Create a sitemap using the official Jekyll sitemap gem
   - jekyll-seo-tag
   - jekyll-last-modified-at
