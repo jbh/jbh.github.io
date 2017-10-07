@@ -4,6 +4,8 @@ title: IBM i Open Source Tools
 excerpt: A quick explanation about IBM i Open Source Technologies, 5733-OPS, and how quickly it is evolving.
 categories:
     - ibm i
+
+published: false
 ---
 
 * TOC
