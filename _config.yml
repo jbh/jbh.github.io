@@ -1,9 +1,12 @@
 #
 # This file contains configuration flags to customize your site
 #
+github: [metadata]
+repository: jbh/jbh.github.io
 
 # Name of your site (displayed in the header)
 name: SoBored Blog
+
 
 twitter_username: tweetjbh
 
@@ -50,7 +53,7 @@ footer-links:
 disqus: soboredblog
 
 # Enter your Google Analytics web tracking code (e.g. UA-2110908-2) to activate tracking
-google_analytics: UA-47056795-2
+clicky_site_id: 101077102
 
 # Your website URL (e.g. http://barryclark.github.io or http://www.barryclark.co)
 # Used for Sitemap.xml and your RSS feed
@@ -78,7 +81,7 @@ sass:
   style: :expanded # You might prefer to minify using :compressed
 
 # Use the following plug-ins
-gems:
+plugins:
   - jekyll-sitemap # Create a sitemap using the official Jekyll sitemap gem
   - jekyll-seo-tag
   - jekyll-last-modified-at

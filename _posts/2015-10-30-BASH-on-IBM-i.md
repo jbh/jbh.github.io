@@ -11,6 +11,9 @@ categories:
 * TOC
 {:toc}
 
+> **10/07/2017** As of the release of 5733-OPS, this is outdated. Please refer to
+[IBM i Open Source Tools](/IBM-i-Open-Source-Tools) for more information.
+
 > **Disclamer**: I am not an IBM i System Administrator. I am a Linux geek that wanted a more familiar development environment on the IBM i. This article is an attempt to document my experiences with getting a familiar BASH environment going on the IBM i.
 > *I have only tested these techniques on versions [7.1](http://www-01.ibm.com/support/knowledgecenter/ssw_ibm_i_71/rzahg/icmain.htm "Documentation for IBM i v7r1"){:target="_blank"} and [7.2](http://www-01.ibm.com/support/knowledgecenter/ssw_ibm_i_72/rzahg/ic-homepage.htm "Documentation for IBM i v7r2"){:target="_blank"} of IBM i.*
 
